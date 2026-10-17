@@ -1,0 +1,22 @@
+# صفحه پیش‌فرض
+DirectoryIndex index.html
+
+# صفحه خطای 404
+ErrorDocument 404 /404.html
+
+# نوع فایل‌ها (برخی هاست‌ها MIME type را درست تنظیم نمی‌کنند)
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType text/css .css
+  AddType font/woff2 .woff2
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # فایل‌های PWA و استاتیک — بدون rewrite
+  RewriteRule ^_next/ - [L]
+  RewriteRule ^icons/ - [L]
+  RewriteRule ^(manifest\.webmanifest|sw\.js|pwa-bootstrap\.js|robots\.txt|sitemap\.xml)$ - [L]
+</IfModule>
